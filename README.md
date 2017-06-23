@@ -41,8 +41,15 @@ both = cbind(id, both)
 head(both)
 both = both[c(1,3:4)]
 set.seed(123)
-index = sample(1:nrow(both), 100, replace = FALSE)
-data = both[index,]
+dim(both)
+both$random = rnorm(386)
+both = as.data.frame(both)
+both$random
 
-write.csv(data, "data.csv", row.names = FALSE)
+library(rlist)
+library(pipeR)
+people <- list.load("http://renkun.me/rlist-tutorial/data/sample.json")
+list.order(both$random)
+
+write.csv(both, "AutoFull.csv", row.names = FALSE)
 ```
